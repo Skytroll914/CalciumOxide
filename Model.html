@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction App</title>
+</head>
+<body>
+    <h1>Predict Fraud</h1>
+    <form id="predictForm">
+        <label for="trans_date_trans_time">Transaction Date and Time:</label>
+        <input type="text" id="trans_date_trans_time" name="trans_date_trans_time"><br>
+        
+        <label for="cc_num">Credit Card Number:</label>
+        <input type="text" id="cc_num" name="cc_num"><br>
+        
+        <label for="merchant">Merchant:</label>
+        <input type="text" id="merchant" name="merchant"><br>
+        
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category"><br>
+        
+        <label for="amt">Amount:</label>
+        <input type="text" id="amt" name="amt"><br>
+        
+        <label for="first">First Name:</label>
+        <input type="text" id="first" name="first"><br>
+        
+        <label for="last">Last Name:</label>
+        <input type="text" id="last" name="last"><br>
+        
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br>
+        
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street"><br>
+        
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city"><br>
+        
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state"><br>
+        
+        <label for="zip">Zip:</label>
+        <input type="text" id="zip" name="zip"><br>
+        
+        <label for="lat">Latitude:</label>
+        <input type="text" id="lat" name="lat"><br>
+        
+        <label for="long">Longitude:</label>
+        <input type="text" id="long" name="long"><br>
+        
+        <label for="city_pop">City Population:</label>
+        <input type="text" id="city_pop" name="city_pop"><br>
+        
+        <label for="job">Job:</label>
+        <input type="text" id="job" name="job"><br>
+        
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" name="dob"><br>
+        
+        <label for="trans_num">Transaction Number:</label>
+        <input type="text" id="trans_num" name="trans_num"><br>
+        
+        <label for="unix_time">Unix Time:</label>
+        <input type="text" id="unix_time" name="unix_time"><br>
+        
+        <label for="merch_lat">Merchant Latitude:</label>
+        <input type="text" id="merch_lat" name="merch_lat"><br>
+        
+        <label for="merch_long">Merchant Longitude:</label>
+        <input type="text" id="merch_long" name="merch_long"><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const data = {
+                trans_date_trans_time: document.getElementById('trans_date_trans_time').value,
+                cc_num: document.getElementById('cc_num').value,
+                merchant: document.getElementById('merchant').value,
+                category: document.getElementById('category').value,
+                amt: document.getElementById('amt').value,
+                first: document.getElementById('first').value,
+                last: document.getElementById('last').value,
+                gender: document.getElementById('gender').value,
+                street: document.getElementById('street').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                lat: document.getElementById('lat').value,
+                long: document.getElementById('long').value,
+                city_pop: document.getElementById('city_pop').value,
+                job: document.getElementById('job').value,
+                dob: document.getElementById('dob').value,
+                trans_num: document.getElementById('trans_num').value,
+                unix_time: document.getElementById('unix_time').value,
+                merch_lat: document.getElementById('merch_lat').value,
+                merch_long: document.getElementById('merch_long').value
+            };
+
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Handle prediction result
+                alert('Prediction: ' + data.prediction);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,5 @@
-# CalciumOxide
+# CalciumOxide (For a Hackathon)
+# Use a Machine learning to detect any credit card fraud and a application for staffs to manage and supervise them
 
 This website utilizes php and mysql. Unfortunately, we are unable to create a live website, therefore this is a localhost website, where we used xampp, to run Apache and Mysql to run a database and local website.
 
